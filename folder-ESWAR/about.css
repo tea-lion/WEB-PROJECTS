@@ -1,0 +1,150 @@
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Poppins,Arial;
+}
+
+body{
+  background:#faf7f8;
+  color:#222;
+}
+
+/* NAVBAR */
+.navbar{
+  background:#000;
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:12px 18px;
+  position:fixed;
+  top:0;
+  width:100%;
+  z-index:1000;
+}
+
+.title-box{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.logo-img{width:46px;}
+.logo{font-size:18px;font-weight:700;}
+
+.desktop-menu{display:none;gap:18px;}
+.desktop-menu a{color:#fff;text-decoration:none;}
+
+.hamburger{
+  font-size:28px;
+  font-weight:900;
+  cursor:pointer;
+}
+
+/* MOBILE MENU */
+.nav-links{
+  position:fixed;
+  top:60px;
+  left:-240px;
+  width:220px;
+  height:calc(100vh - 60px);
+  background:#111;
+  display:flex;
+  flex-direction:column;
+  transition:.35s;
+  z-index:999;
+}
+.nav-links a{
+  color:#fff;
+  padding:12px 20px;
+  text-decoration:none;
+  border-bottom:1px solid #333;
+}
+.nav-links.show{left:0}
+
+/* ABOUT */
+.about-section{
+  padding:100px 20px 60px;
+  max-width:900px;
+  margin:auto;
+}
+
+.section-title{
+  text-align:center;
+  margin-bottom:50px;
+  font-size:26px;
+  animation:fadeDown 1s ease;
+}
+
+.row{
+  display:flex;
+  align-items:center;
+  gap:30px;
+  margin-bottom:70px;
+  animation:fadeUp 1.2s ease;
+}
+.row.reverse{flex-direction:row-reverse;}
+
+.row img{
+  width:300px;
+  height: 190pxpx;
+  object-fit:cover;
+  border-radius:14px;
+  box-shadow:0 12px 25px rgba(0,0,0,.15);
+  transition:.4s;
+}
+.row img:hover{transform:scale(1.05);}
+
+.text-box{
+  flex:1;
+  font-size:16px;
+  line-height:1.7;
+  color:#333;
+}
+
+/* FOOTER */
+.footer{
+  background:#000;
+  color:#fff;
+  text-align:center;
+  padding:16px;
+  margin-top:40px;
+}
+
+/* ANIMATIONS */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(40px);}
+  to{opacity:1;transform:translateY(0);}
+}
+@keyframes fadeDown{
+  from{opacity:0;transform:translateY(-30px);}
+  to{opacity:1;transform:translateY(0);}
+}
+
+/* RESPONSIVE */
+@media(min-width:768px){
+  .desktop-menu{display:flex;}
+  .hamburger{display:none;}
+  .nav-links{display:none!important;}
+}
+
+/* 🔥 MOBILE FIX */
+@media(max-width:600px){
+  .row,
+  .row.reverse{
+    flex-direction:column;
+    text-align:center;
+  }
+
+  .text-box{
+    width:100%;
+    padding:10px;
+  }
+
+  .row img{
+    width:100%;
+    max-width:320px;
+  }
+}
+

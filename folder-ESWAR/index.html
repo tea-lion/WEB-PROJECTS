@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Home — ESWAR COTTAGE INDUSTRIES</title>
+<link rel="icon" href="logo.jpeg">
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="navbar">
+  <div class="hamburger" onclick="toggleMenu()">☰</div>
+
+  <div class="title-box">
+    <img src="logo.jpeg" class="logo-img">
+    <h1 class="logo">ESWAR COTTAGE INDUSTRIES</h1>
+  </div>
+ 
+  <nav class="desktop-menu">
+    <a href="index.html">Home</a>
+    <a href="products.html">Products</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <nav id="menu" class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="products.html">Products</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero fade-up">
+  <div class="hero-content">
+    <h2 class="fade-down">Elegance • Love • Moments You’ll Remember Forever</h2>
+  </div>
+</section>
+
+<!-- CARDS -->
+<section class="products">
+  <h2 class="section-title fade-down">TRUST US WITH YOUR HOPE</h2>
+
+  <div class="product-grid fade-up">
+    <div class="product-card">
+      <a href="about.html">
+        <img src="1.jpg">
+        <h3>COMPANY</h3>
+      </a>
+    </div>
+
+    <div class="product-card">
+      <a href="products.html">
+        <img src="whole.png">
+        <h3>PRODUCTS</h3>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="trust-box">
+  YOUR TRUST OUR WORK
+</section>
+
+<footer class="footer">
+  @ cottage-industry VIRUDHUNAGAR-626 001
+</footer>
+
+<script>
+function toggleMenu(){
+  document.getElementById("menu").classList.toggle("show");
+}
+</script>
+
+</body>
+</html>
+

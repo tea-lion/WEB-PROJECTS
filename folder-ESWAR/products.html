@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Products — ESWAR</title>
+<link rel="icon" type="image/png" href="logo.jpeg">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,Arial;}
+body{background:#faf7f8;color:#222;}
+
+/* NAVBAR */
+.navbar{
+  background:#000;
+  color:#fff;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:12px 18px;
+  position:fixed;
+  top:0;
+  width:100%;
+  z-index:1000;
+}
+
+.title-box{display:flex;align-items:center;gap:10px;}
+.logo-img{width:46px;}
+.logo{font-size:18px;font-weight:700;}
+
+.desktop-menu{display:none;gap:18px;}
+.desktop-menu a{color:#fff;text-decoration:none;}
+
+.hamburger{
+  font-size:28px;
+  font-weight:900;
+  cursor:pointer;
+}
+
+/* MOBILE MENU */
+.nav-links{
+  position:fixed;
+  top:60px;
+  left:-240px;
+  width:220px;
+  height:calc(100vh - 60px);
+  background:#111;
+  display:flex;
+  flex-direction:column;
+  transition:.35s;
+  z-index:999;
+}
+.nav-links a{
+  color:#fff;
+  padding:12px 20px;
+  text-decoration:none;
+  border-bottom:1px solid #333;
+}
+.nav-links.show{left:0}
+
+/* PRODUCTS */
+.products{
+  padding:40px 20px;
+  text-align:center;
+  margin-top:90px;
+}
+
+.section-title{
+  margin:25px 0;
+  font-size:22px;
+}
+
+.product-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:20px;
+  max-width:900px;
+  margin:auto;
+}
+
+.product-card{
+  background:#fff;
+  border-radius:14px;
+  padding:14px;
+  box-shadow:0 8px 20px rgba(0,0,0,.12);
+}
+
+.product-card img{
+  width:100%;
+  height:200px;
+  object-fit:cover;
+  border-radius:10px;
+  cursor:pointer;
+}
+
+/* ❌ REMOVED the rule that made last image different size */
+/*
+.product-grid > .product-card:last-child{
+  grid-column:1 / -1;
+  justify-self:center;
+  max-width:260px;
+}
+*/
+
+.product-card h3{
+  margin:12px 0 6px;
+  font-size:16px;
+}
+.product-card h5{
+  font-size:14px;
+  color:#666;
+}
+
+/* IMAGE PREVIEW */
+#previewBox{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.9);
+  z-index:2000;
+}
+#previewImg{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  max-width:90%;
+  max-height:90%;
+  border-radius:8px;
+}
+
+/* FOOTER */
+.footer{
+  background:#000;
+  color:#fff;
+  text-align:center;
+  padding:14px;
+  margin-top:40px;
+}
+
+/* 🔥 ONLY ANIMATION ADDED */
+.fade-up{ animation:fadeUp 1.2s ease forwards; }
+.fade-down{ animation:fadeDown 1s ease forwards; }
+
+@keyframes fadeUp{
+  from{opacity:0; transform:translateY(40px);}
+  to{opacity:1; transform:translateY(0);}
+}
+@keyframes fadeDown{
+  from{opacity:0; transform:translateY(-30px);}
+  to{opacity:1; transform:translateY(0);}
+}
+
+/* DESKTOP */
+@media(min-width:768px){
+  .desktop-menu{display:flex;}
+  .hamburger{display:none;}
+  .nav-links{display:none!important;}
+}
+</style>
+</head>
+
+<body>
+
+<header class="navbar">
+  <div class="hamburger" onclick="toggleMenu()">☰</div>
+
+  <div class="title-box">
+    <img src="logo.jpeg" class="logo-img">
+    <h1 class="logo">ESWAR COTTAGE INDUSTRIES</h1>
+  </div>
+
+  <nav class="desktop-menu">
+    <a href="index.html">Home</a>
+    <a href="products.html">Products</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <nav id="menu" class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="products.html">Products</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<section class="products">
+<h2 class="section-title fade-down">Our Product Collection</h2>
+
+<div class="product-grid fade-up">
+  <div class="product-card"><img src="10.jpg" onclick="openPreview(this.src)"><h3>சாம்பிராணி STAND</h3></div>
+  <div class="product-card"><img src="2.jpg" onclick="openPreview(this.src)"><h3>size: ALL SIZE</h3></div>
+  <div class="product-card"><img src="3.png" onclick="openPreview(this.src)"><h3>size: ALL SIZE</h3><h5>[ With Tin]</h5></div>
+  <div class="product-card"><img src="5.jpg" onclick="openPreview(this.src)"><h3>size: ALL SIZE</h3></div>
+  <div class="product-card"><img src="9.jpg" onclick="openPreview(this.src)"><h3>size: ALL SIZE</h3></div>
+  <div class="product-card"><img src="4.jpg" onclick="openPreview(this.src)"><h3>size: ALL SIZE</h3></div>
+  <div class="product-card"><img src="11.jpeg" onclick="openPreview(this.src)"><h3>size: ALL SIZE</h3></div>
+</div>
+</section>
+
+<div id="previewBox" onclick="closePreview()">
+  <img id="previewImg">
+</div>
+
+<footer class="footer">
+  @ cottage-industry VIRUDHUNAGAR-626 001
+</footer>
+
+<script>
+function toggleMenu(){
+  document.getElementById("menu").classList.toggle("show");
+}
+function openPreview(src){
+  document.getElementById("previewImg").src=src;
+  document.getElementById("previewBox").style.display="flex";
+}
+function closePreview(){
+  document.getElementById("previewBox").style.display="none";
+}
+</script>
+
+</body>
+</html>
