@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Friendship Forest</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body data-mood="happy" data-time="day" data-season="spring">
+    <div class="app-shell">
+      <header class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">A living visual diary</p>
+          <h1>Friendship Forest</h1>
+          <p class="tagline">Every year grows a new tree and every memory becomes a fruit.</p>
+        </div>
+        <div class="stats-card">
+          <h2 id="friendshipTitle">Your story is blooming</h2>
+          <p id="milestoneText" class="milestone-text">A new tree is waiting to grow.</p>
+          <div class="metric-grid">
+            <div class="metric-pill">
+              <strong id="daysCount">0</strong>
+              <span>Days</span>
+            </div>
+            <div class="metric-pill">
+              <strong id="monthsCount">0</strong>
+              <span>Months</span>
+            </div>
+            <div class="metric-pill">
+              <strong id="yearsCount">0</strong>
+              <span>Years</span>
+            </div>
+          </div>
+          <div class="status-row">
+            <span id="seasonBadge">🌸 Spring</span>
+            <span id="timeBadge">☀ Morning</span>
+          </div>
+        </div>
+      </header>
+
+      <main class="content-grid">
+        <section class="panel-stack">
+          <form id="profileForm" class="panel">
+            <h3>Start your friendship forest</h3>
+            <label>
+              Your name
+              <input id="yourName" name="yourName" type="text" required />
+            </label>
+            <label>
+              Friend's name
+              <input id="friendName" name="friendName" type="text" required />
+            </label>
+            <label>
+              Friendship start date
+              <input id="startDate" name="startDate" type="date" required />
+            </label>
+            <button type="submit">Save the roots</button>
+          </form>
+
+          <div class="panel">
+            <h3>Today’s relationship mood</h3>
+            <div id="moodButtons" class="mood-buttons"></div>
+            <div class="mood-preview">
+              <span id="moodBadge" class="mood-badge">😊 Happy</span>
+              <p id="moodDescription">The forest is shining with fresh energy.</p>
+            </div>
+          </div>
+
+          <form id="memoryForm" class="panel">
+            <h3>Add a memory fruit</h3>
+            <label>
+              Memory title
+              <input id="memoryTitle" type="text" required />
+            </label>
+            <label>
+              Memory date
+              <input id="memoryDate" type="date" required />
+            </label>
+            <label>
+              Memory note
+              <textarea id="memoryText" rows="3" required></textarea>
+            </label>
+            <button type="submit">Plant a memory</button>
+          </form>
+        </section>
+
+        <section class="scene-panel">
+          <div class="scene" id="scene">
+            <div class="sky"></div>
+            <div class="weather-layer">
+              <div class="sun" id="sun"></div>
+              <div class="moon" id="moon"></div>
+              <div class="cloud cloud-one"></div>
+              <div class="cloud cloud-two"></div>
+              <div class="rain-layer" id="rainLayer"></div>
+              <div class="birds" id="birds"></div>
+              <div class="rainbow" id="rainbow"></div>
+              <div class="stars" id="stars"></div>
+            </div>
+            <div class="ground"></div>
+            <div id="forestLayer" class="forest-layer"></div>
+            <button type="button" id="benchButton" class="bench">🪑 Bench</button>
+            <div id="wildlifeLayer" class="wildlife-layer"></div>
+          </div>
+        </section>
+      </main>
+
+      <section class="lower-grid">
+        <div class="panel timeline-panel">
+          <h3>Timeline</h3>
+          <ul id="timelineList" class="timeline-list"></ul>
+        </div>
+        <div class="panel memory-panel">
+          <h3>Memory fruits</h3>
+          <div id="memoryFruits" class="memory-fruits"></div>
+        </div>
+      </section>
+    </div>
+
+    <div id="memoryModal" class="modal hidden" aria-hidden="true">
+      <div class="modal-card">
+        <button class="modal-close" id="closeModal" type="button">×</button>
+        <h3 id="modalTitle">Memory</h3>
+        <p id="modalDate" class="modal-date"></p>
+        <p id="modalText"></p>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
