@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Cosmic Defender: Cyberpunk Edition</title>
+    <title>Cosmic Defender: Fullscreen Cyberpunk</title>
     <style>
         * {
             box-sizing: border-box;
@@ -35,6 +35,18 @@
             overflow: hidden;
             border: 2px solid rgba(0, 240, 255, 0.8);
             background: #000;
+        }
+
+        /* Fullscreen override styling */
+        #game-container:fullscreen, 
+        #game-container:-webkit-full-screen, 
+        #game-container:-moz-full-screen {
+            max-width: 100vw !important;
+            max-height: 100vh !important;
+            width: 100vw !important;
+            height: 100vh !important;
+            border-radius: 0 !important;
+            border: none !important;
         }
 
         @media (max-width: 600px) {
@@ -263,7 +275,7 @@
         <div id="startScreen" class="screen">
             <h1>CYBER DEFENDER</h1>
             <div class="high-score-tag">🏆 RECORD: <span id="bestScore">0</span></div>
-            <p>Earn a free EMP Bomb every 500 points! Choose your tactical loadout:</p>
+            <p>Tapping Start launches FULL SCREEN mode!<br>Earn a free EMP Bomb every 500 points!</p>
 
             <div class="weapon-selector">
                 <div class="weapon-card selected" onclick="selectWeapon('plasma', this)">
@@ -300,10 +312,23 @@
             canvas.height = container.clientHeight;
         }
         window.addEventListener('resize', resizeCanvas);
+        document.addEventListener('fullscreenchange', resizeCanvas);
+        document.addEventListener('webkitfullscreenchange', resizeCanvas);
         resizeCanvas();
 
         let highScore = parseInt(localStorage.getItem('cyber_defender_high') || '0');
         document.getElementById('bestScore').innerText = highScore;
+
+        // Fullscreen Trigger Function
+        function requestFullScreen() {
+            if (container.requestFullscreen) {
+                container.requestFullscreen().catch(() => {});
+            } else if (container.webkitRequestFullscreen) { /* Safari / iOS */
+                container.webkitRequestFullscreen();
+            } else if (container.msRequestFullscreen) { /* IE11 */
+                container.msRequestFullscreen();
+            }
+        }
 
         const AudioSys = {
             ctx: null,
@@ -500,11 +525,13 @@
         }
 
         function startGame() {
+            requestFullScreen(); // Go fullscreen on start
             AudioSys.init();
             resetGame();
             isPlaying = true;
             document.getElementById('startScreen').classList.add('hidden');
             document.getElementById('gameOverScreen').classList.add('hidden');
+            setTimeout(resizeCanvas, 100);
             requestAnimationFrame(gameLoop);
         }
 
@@ -537,7 +564,6 @@
                 if (s.y > canvas.height) { s.y = 0; s.x = Math.random() * canvas.width; }
             });
 
-            // Bullets logic with homing and wave behavior
             for (let i = bullets.length - 1; i >= 0; i--) {
                 let b = bullets[i];
 
@@ -705,7 +731,6 @@
 
             if (!isPlaying) { ctx.restore(); return; }
 
-            // Powerups
             powerups.forEach(p => {
                 ctx.strokeStyle = '#ffe600';
                 ctx.lineWidth = 2;
@@ -729,7 +754,6 @@
                 ctx.restore();
             }
 
-            // Player Ship & Shield
             ctx.save();
             ctx.translate(player.x, player.y);
             
@@ -753,7 +777,6 @@
             ctx.fill();
             ctx.restore();
 
-            // Bullets
             bullets.forEach(b => {
                 ctx.fillStyle = b.homing ? '#ff006e' : b.wave ? '#00f0ff' : '#ffe600';
                 ctx.shadowBlur = 10;
